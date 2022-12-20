@@ -56,6 +56,10 @@ public class ProductService {
     return productRepository.findAll();
   }
 
+  public Product getProduct(long id) {
+    return productRepository.findById(id).orElseThrow(NoSuchElementException::new);
+  }
+
   @Autowired
   public ProductService(ProductRepositoryInterface repository){
     this.repository = repository;
