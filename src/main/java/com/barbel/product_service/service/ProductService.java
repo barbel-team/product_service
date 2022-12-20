@@ -2,10 +2,12 @@ package com.barbel.product_service.service;
 
 import com.barbel.product_service.dto.CartResponse;
 import com.barbel.product_service.entity.Cart;
+import com.barbel.product_service.entity.Order;
 import com.barbel.product_service.entity.Product;
 import com.barbel.product_service.entity.ProductImage;
 import com.barbel.product_service.mapper.CartResponseMapper;
 import com.barbel.product_service.repository.CartRepository;
+import com.barbel.product_service.repository.OrderRepository;
 import com.barbel.product_service.repository.ProductRepository;
 import com.barbel.product_service.repository.ProductRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,13 @@ import java.util.Optional;
 public class ProductService {
 
   private ProductRepositoryInterface repository;
-
   @Autowired
   private ProductRepository productRepository;
-
   @Autowired
   private CartRepository cartRepository;
-  public Product save(Product p){
+  @Autowired
+  private OrderRepository orderRepository;
+  public Product saveProduct(Product p){
 
     p.setPrd_name(p.getPrd_name());
     p.setPrd_price(p.getPrd_price());
@@ -58,6 +60,10 @@ public class ProductService {
 
   public Product getProduct(long id) {
     return productRepository.findById(id).orElseThrow(NoSuchElementException::new);
+  }
+
+  public void saveOrder(Order order) {
+
   }
 
   @Autowired
