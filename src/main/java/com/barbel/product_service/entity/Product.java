@@ -37,6 +37,7 @@ public class Product {
   // 상품 내용
   @NotBlank(message = "상품 내용을 입력해주세요")
   private String prd_ment;
+  private String prd_img_url;
 
   // 판매 수량
   @NotNull
@@ -49,6 +50,7 @@ public class Product {
       String prd_cmp,
       String prd_type,
       String prd_ment,
+      String prd_img_url,
       int prd_sales) {
     this.prd_name = prd_name;
     this.prd_price = prd_price;
@@ -56,5 +58,6 @@ public class Product {
     this.prd_type = prd_type;
     this.prd_ment = prd_ment;
     this.prd_sales = prd_sales;
+    this.prd_img_url = prd_img_url;
   }
 }

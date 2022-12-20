@@ -1,14 +1,17 @@
 package com.barbel.product_service.service;
 
+import com.barbel.product_service.dto.CartResponse;
 import com.barbel.product_service.entity.Cart;
 import com.barbel.product_service.entity.Product;
 import com.barbel.product_service.entity.ProductImage;
+import com.barbel.product_service.mapper.CartResponseMapper;
 import com.barbel.product_service.repository.CartRepository;
 import com.barbel.product_service.repository.ProductRepository;
 import com.barbel.product_service.repository.ProductRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -35,8 +38,18 @@ public class ProductService {
     return productRepository.save(p);
   }
 
-  public List<Cart> getMyCart(Long uid) {
-   return cartRepository.findCartsByUid(uid).orElseThrow(NoSuchElementException::new);
+  public List<CartResponse> getMyCart(Long uid) {
+    List<Cart> carts = cartRepository.findCartsByUid(uid).orElseThrow(NoSuchElementException::new);
+    List<CartResponse> cartResponses = new ArrayList<>();
+
+    for(Cart cart : carts) {
+      Product p = productRepository.findById(cart.getOrdnum()).orElseThrow(NoSuchElementException::new);
+      cartResponses.add(CartResponseMapper.mapping(cart, p));
+      System.out.println(p.getUid());
+      System.out.println(cart.getUid());
+    }
+    return cartResponses;
+
   }
 
   public void uploadImage(ProductImage pi){

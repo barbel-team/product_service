@@ -1,7 +1,7 @@
 package com.barbel.product_service.controller;
 
 
-import com.barbel.product_service.entity.Cart;
+import com.barbel.product_service.dto.CartResponse;
 import com.barbel.product_service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class CartController {
   ProductService service;
 
   @GetMapping("/mylikes")
-  public List<Cart> like(@RequestParam Long id) {
+  public List<CartResponse> like(@RequestParam Long id) {
     return service.getMyCart(id);
   }
 }
