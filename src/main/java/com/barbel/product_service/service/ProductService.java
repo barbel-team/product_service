@@ -52,8 +52,8 @@ public class ProductService {
 
   }
 
-  public void uploadImage(ProductImage pi){
-    repository.saveProductImage(pi);
+  public List<Product> getProduct() {
+    return productRepository.findAll();
   }
 
   @Autowired

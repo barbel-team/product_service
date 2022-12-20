@@ -26,6 +26,8 @@ public class Product {
   @NotNull
   private int prd_price;
 
+  private int fk_cate;
+
   // 상품업체
   @NotBlank(message = "상품 업체를 입력해주세요")
   private String prd_cmp;
@@ -37,6 +39,7 @@ public class Product {
   // 상품 내용
   @NotBlank(message = "상품 내용을 입력해주세요")
   private String prd_ment;
+  @Column(name = "prd_img")
   private String prd_img_url;
 
   // 판매 수량

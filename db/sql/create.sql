@@ -32,10 +32,9 @@ create table product
     prd_cmp    varchar(30) NOT NULL,
     prd_type   varchar(30) NOT NULL,
     prd_img    varchar(100) NOT NULL,
-    realfile   varchar(30) NOT NULL,
     prd_ment   varchar(50) NOT NULL,
-    prd_stock  INT(15)     NOT NULL,
-    prd_sales  INT(15)     NOT NULL,
+    prd_stock  INT(15)     NOT NULL default 100,
+    prd_sales  INT(15)     NOT NULL default 0,
     prd_name   VARCHAR(50) NOT NULL,
     FOREIGN KEY (fk_cate) REFERENCES ctgprd (uid)
 );
@@ -50,14 +49,4 @@ create table cart_prd
     cart_chk  INT(10) NOT NULL,
     cart_pay  INT(20) NOT NULL,
     FOREIGN KEY (fk_ord) REFERENCES product (uid)
-);
-
-# <!--상품 이미지-->
-create table product_img
-(
-    uuid        VARCHAR(50),
-    imgname     VARCHAR(30),
-    contenttype VARCHAR(30),
-    productid   INT,
-    foreign key (productid) references product (uid) on update cascade on delete restrict
 );
