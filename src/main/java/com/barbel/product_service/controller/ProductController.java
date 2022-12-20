@@ -35,7 +35,7 @@ public class ProductController {
     return service.getProduct();
   }
 
-  @GetMapping("/products")
+  @GetMapping("/product")
   public Product getProduct(@RequestParam long id) {
     return service.getProduct(id);
   }
