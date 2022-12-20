@@ -1,23 +1,3 @@
-
-# <!--주문관리-->
-create table ord
-(
-    uid        INT AUTO_INCREMENT PRIMARY KEY,
-    fk_num     BIGINT      NOT NULL,
-    res_nm     varchar(20) NOT NULL,
-    res_addr01 varchar(30) NOT NULL,
-    res_addr02 varchar(30) NOT NULL,
-    res_addr03 varchar(30) NOT NULL,
-    res_tel    varchar(12) NOT NULL,
-    res_hp     varchar(13) NOT NULL,
-    deliv_req  varchar(40) NOT NULL,
-    fk_prdnum  INT         NOT NULL,
-    ord_date   date        NOT NULL,
-    p_time     timestamp   not null default current_timestamp,
-    FOREIGN KEY (fk_prdnum) REFERENCES product (uid)
-);
-
-
 # <!--카테고리별 상품관리-->
 create table ctgprd
 (
@@ -40,6 +20,25 @@ create table product
     prd_name   VARCHAR(50) NOT NULL,
     FOREIGN KEY (fk_cate) REFERENCES ctgprd (uid)
 );
+
+# <!--주문관리-->
+create table ord
+(
+    uid        INT AUTO_INCREMENT PRIMARY KEY,
+    fk_num     BIGINT      NOT NULL,
+    res_nm     varchar(20) NOT NULL,
+    res_addr01 varchar(30) NOT NULL,
+    res_addr02 varchar(30) NOT NULL,
+    res_addr03 varchar(30) NOT NULL,
+    res_tel    varchar(12) NOT NULL,
+    res_hp     varchar(13) NOT NULL,
+    deliv_req  varchar(40) NOT NULL,
+    fk_prdnum  INT         NOT NULL,
+    ord_date   date        NOT NULL default  current_date,
+    p_time     timestamp   not null default current_timestamp,
+    FOREIGN KEY (fk_prdnum) REFERENCES product (uid)
+);
+
 
 # <!--장바구니-->
 create table cart_prd
