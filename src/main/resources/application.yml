@@ -1,17 +1,15 @@
-
-
 spring:
   main:
     allow-bean-definition-overriding: true
 
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    jdbcUrl: jdbc:mariadb://localhost:3306/product?characterEncoding=UTF-8&serverTimezone=UTC
+    jdbcUrl: jdbc:mariadb://productDB:3306/product?characterEncoding=UTF-8&serverTimezone=UTC
     username: barbel
     password: barbel!
   second-datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    jdbcUrl: jdbc:mariadb://localhost:3309/product?characterEncoding=UTF-8&serverTimezone=UTC
+    jdbcUrl: jdbc:mariadb://productDB_write:3309/product?characterEncoding=UTF-8&serverTimezone=UTC
     username: barbel
     password: barbel!
 
