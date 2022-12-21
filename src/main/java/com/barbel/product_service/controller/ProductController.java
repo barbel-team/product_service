@@ -1,7 +1,9 @@
 package com.barbel.product_service.controller;
 
+import com.barbel.product_service.dto.ProductDTO;
 import com.barbel.product_service.entity.Order;
 import com.barbel.product_service.entity.Product;
+import com.barbel.product_service.mapper.ProductMapper;
 import com.barbel.product_service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +24,9 @@ public class ProductController {
 
   @PostMapping(value = "/newproduct")
   public ResponseEntity<String> createProduct(
-      @Valid @RequestBody Product p
+      @Valid @RequestBody ProductDTO pDTO
   ) {
-
+    Product p = ProductMapper.toEntity(pDTO);
     // product DB에 넣기
     service.saveProduct(p);
 
@@ -50,6 +52,11 @@ public class ProductController {
   public ResponseEntity<String> order(@RequestBody Order order) {
     service.saveOrder(order);
     return ResponseEntity.ok("OK");
+  }
+
+  @GetMapping("/order/get")
+  public List<Order> getOrder(@RequestParam String tel) {
+    return service.getOrdersbyTel(tel);
   }
 
   @GetMapping("/ping")
