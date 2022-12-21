@@ -29,8 +29,8 @@ create table ord
     res_addr01 varchar(30) NOT NULL,
     res_addr02 varchar(30) NOT NULL,
     res_addr03 varchar(30) NOT NULL,
-    res_hp     varchar(13) NOT NULL,
-    deliv_req  varchar(40) NOT NULL,
+    res_tel     varchar(15) NOT NULL,
+    deliv_req  varchar(100) NOT NULL,
     fk_prdnum  INT         NOT NULL,
     ord_date   date        NOT NULL default  current_date,
     p_time     timestamp   not null default current_timestamp,
@@ -73,6 +73,6 @@ insert into product
      "강한 나를 만들어주는 마법의 비약 크레아틴!", "크레아틴 모노 하이드레이트");
 
 insert into ord
-(res_nm, res_addr01, res_addr02, res_addr03, res_hp, deliv_req, fk_prdnum) values
+(res_nm, res_addr01, res_addr02, res_addr03, res_tel, deliv_req, fk_prdnum) values
 ("집", "15875", "경기 군포시 용호2로 51", "104동 1401호", "010-6773-0139", "근손실 날 것 같습니다. 빨리 배송해주세요!", 1);
 
