@@ -7,5 +7,4 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-    Optional<List<Order>> findOrdersByRes_tel(String tel);
 }

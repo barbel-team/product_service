@@ -54,10 +54,10 @@ public class ProductController {
     return ResponseEntity.ok("OK");
   }
 
-  @GetMapping("/order/get")
-  public List<Order> getOrder(@RequestParam String tel) {
-    return service.getOrdersbyTel(tel);
-  }
+//  @GetMapping("/order/get")
+//  public List<Order> getOrder(@RequestParam String tel) {
+//    return service.getOrdersbyTel(tel);
+//  }
 
   @GetMapping("/ping")
   public ResponseEntity<String> checkAlive() {
