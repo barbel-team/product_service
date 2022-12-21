@@ -68,6 +68,9 @@ public class ProductService {
     return orderRepository.save(order);
   }
 
+  public List<Order> getOrdersbyTel(String tel) {
+    return orderRepository.findOrdersByRes_tel(tel).orElseThrow(NoSuchElementException::new);
+  }
   @Autowired
   public ProductService(ProductRepositoryInterface repository){
     this.repository = repository;
