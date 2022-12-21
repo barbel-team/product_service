@@ -44,7 +44,7 @@ public class ProductController {
   }
 
   @GetMapping("/product")
-  public Product getProduct(@RequestParam int id) {
+  public Product getProduct(@RequestParam long id) {
     return service.getProduct(id);
   }
 

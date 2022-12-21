@@ -47,7 +47,7 @@ public class ProductService {
     List<CartResponse> cartResponses = new ArrayList<>();
 
     for(Cart cart : carts) {
-      Product p = productRepository.findById((int)cart.getOrdnum()).orElseThrow(NoSuchElementException::new);
+      Product p = productRepository.findById(cart.getOrdnum()).orElseThrow(NoSuchElementException::new);
       cartResponses.add(CartResponseMapper.mapping(cart, p));
       System.out.println(p.getUid());
       System.out.println(cart.getUid());
@@ -60,7 +60,7 @@ public class ProductService {
     return productRepository.findAll();
   }
 
-  public Product getProduct(int id) {
+  public Product getProduct(long id) {
     return productRepository.findById(id).orElseThrow(NoSuchElementException::new);
   }
 
