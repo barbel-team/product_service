@@ -2,7 +2,6 @@ package com.barbel.product_service.entity;
 
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
-import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -18,7 +17,6 @@ public class Product {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long uid;
-
   // 상품명
   @NotBlank(message = "상품명을 입력해주세요")
   private String prd_name;
@@ -43,9 +41,9 @@ public class Product {
   @Column(name = "prd_img")
   private String prd_img_url;
 
-  // 판매 수량
-  @NotNull
+  // 판매 수
   private int prd_sales;
+  private int prd_stock;
 
   @Builder
   private Product(
@@ -55,7 +53,9 @@ public class Product {
       String prd_type,
       String prd_ment,
       String prd_img_url,
-      int prd_sales) {
+      int fk_cate,
+      int prd_sales,
+      int prd_stock) {
     this.prd_name = prd_name;
     this.prd_price = prd_price;
     this.prd_cmp = prd_cmp;
@@ -63,5 +63,7 @@ public class Product {
     this.prd_ment = prd_ment;
     this.prd_sales = prd_sales;
     this.prd_img_url = prd_img_url;
+    this.prd_stock = prd_stock;
+    this.fk_cate = fk_cate;
   }
 }
