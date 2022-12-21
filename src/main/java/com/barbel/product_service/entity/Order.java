@@ -20,14 +20,13 @@ public class Order {
   @Column(name = "uid")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-  private long fk_num;
   private String res_nm;
   private String res_addr01;
   private String res_addr02;
   private String res_addr03;
   private String res_tel;
-  private String res_hp;
   private String deliv_req;
+  private int fk_prdnum;
   private Date ord_date;
   private Time p_time;
 
