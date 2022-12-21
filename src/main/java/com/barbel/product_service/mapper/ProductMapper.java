@@ -11,6 +11,9 @@ public class ProductMapper {
         .prd_cmp(productDTO.getPrd_cmp())
         .prd_type(productDTO.getPrd_type())
         .prd_ment(productDTO.getPrd_ment())
-        .prd_sales(productDTO.getPrd_sales()).build();
+        .prd_sales(productDTO.getPrd_sales())
+            .prd_img_url(productDTO.getPrd_img_url())
+            .fk_cate(productDTO.getFk_cate())
+            .prd_stock(productDTO.getPrd_stock()).build();
   }
 }
