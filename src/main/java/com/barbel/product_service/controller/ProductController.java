@@ -46,4 +46,11 @@ public class ProductController {
     service.saveOrder(order);
     return ResponseEntity.ok("OK");
   }
+
+  @GetMapping("/ping")
+  public ResponseEntity<String> checkAlive() {
+    List<Product> product = service.getProduct();
+    return ResponseEntity.ok("OK");
+  }
+
 }
