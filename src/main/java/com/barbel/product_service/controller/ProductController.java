@@ -30,6 +30,11 @@ public class ProductController {
 
     return ResponseEntity.ok("OK");
   }
+  @GetMapping(value = "/sync")
+  public ResponseEntity<String> createProduct_sub() {
+    service.syncDB();
+    return ResponseEntity.ok("OK");
+  }
 
   @GetMapping("/products")
   public List<Product> getProducts() {
@@ -37,7 +42,7 @@ public class ProductController {
   }
 
   @GetMapping("/product")
-  public Product getProduct(@RequestParam long id) {
+  public Product getProduct(@RequestParam int id) {
     return service.getProduct(id);
   }
 

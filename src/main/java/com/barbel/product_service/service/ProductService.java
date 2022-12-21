@@ -10,6 +10,7 @@ import com.barbel.product_service.repository.CartRepository;
 import com.barbel.product_service.repository.OrderRepository;
 import com.barbel.product_service.repository.ProductRepository;
 import com.barbel.product_service.repository.ProductRepositoryInterface;
+import com.barbel.product_service.secondrepository.SecondDBProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,27 +26,28 @@ public class ProductService {
   @Autowired
   private ProductRepository productRepository;
   @Autowired
+  private SecondDBProductRepository secondDBProductRepository;
+  @Autowired
   private CartRepository cartRepository;
   @Autowired
   private OrderRepository orderRepository;
   public Product saveProduct(Product p){
-
-    p.setPrd_name(p.getPrd_name());
-    p.setPrd_price(p.getPrd_price());
-    p.setPrd_cmp(p.getPrd_cmp());
-    p.setPrd_type(p.getPrd_type());
-    p.setPrd_ment(p.getPrd_ment());
-    p.setPrd_sales(p.getPrd_sales());
-
-    return productRepository.save(p);
+    return secondDBProductRepository.save(p);
   }
+
+  public void syncDB(){
+    List<Product> list = secondDBProductRepository.findAll();
+    productRepository.deleteAll();
+    productRepository.saveAllAndFlush(list);
+    }
+
 
   public List<CartResponse> getMyCart(Long uid) {
     List<Cart> carts = cartRepository.findCartsByUid(uid).orElseThrow(NoSuchElementException::new);
     List<CartResponse> cartResponses = new ArrayList<>();
 
     for(Cart cart : carts) {
-      Product p = productRepository.findById(cart.getOrdnum()).orElseThrow(NoSuchElementException::new);
+      Product p = productRepository.findById((int)cart.getOrdnum()).orElseThrow(NoSuchElementException::new);
       cartResponses.add(CartResponseMapper.mapping(cart, p));
       System.out.println(p.getUid());
       System.out.println(cart.getUid());
@@ -58,7 +60,7 @@ public class ProductService {
     return productRepository.findAll();
   }
 
-  public Product getProduct(long id) {
+  public Product getProduct(int id) {
     return productRepository.findById(id).orElseThrow(NoSuchElementException::new);
   }
 
