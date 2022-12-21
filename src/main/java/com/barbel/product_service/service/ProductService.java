@@ -62,8 +62,8 @@ public class ProductService {
     return productRepository.findById(id).orElseThrow(NoSuchElementException::new);
   }
 
-  public void saveOrder(Order order) {
-
+  public Order saveOrder(Order order) {
+    return orderRepository.save(order);
   }
 
   @Autowired
